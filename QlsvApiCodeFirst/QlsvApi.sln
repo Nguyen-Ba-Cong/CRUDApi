@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QlsvApi", "QlsvApi.csproj", "{3EE24C28-8537-4002-B630-60205F52F879}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EE24C28-8537-4002-B630-60205F52F879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EE24C28-8537-4002-B630-60205F52F879}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EE24C28-8537-4002-B630-60205F52F879}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EE24C28-8537-4002-B630-60205F52F879}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6390BD94-C45C-464F-BEEC-5B1E2D0B5806}
+	EndGlobalSection
+EndGlobal
