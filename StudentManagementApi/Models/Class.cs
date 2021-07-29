@@ -9,12 +9,12 @@ namespace StudentManagementApi.Models
     {
         public Class()
         {
-            Students = new HashSet<Student>();
+            ClassEnrolments = new HashSet<ClassEnrolment>();
         }
 
         public int ClassId { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<ClassEnrolment> ClassEnrolments { get; set; }
     }
 }

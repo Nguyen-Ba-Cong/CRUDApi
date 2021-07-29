@@ -7461,11 +7461,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Code Files\\Intern Enclave\\StudentManagementApi\\StudentManagementApi.csproj",
+      "projectUniqueName": "D:\\Code Files\\Intern Enclave\\CRUDAPI\\StudentManagementApi\\StudentManagementApi.csproj",
       "projectName": "StudentManagementApi",
-      "projectPath": "D:\\Code Files\\Intern Enclave\\StudentManagementApi\\StudentManagementApi.csproj",
+      "projectPath": "D:\\Code Files\\Intern Enclave\\CRUDAPI\\StudentManagementApi\\StudentManagementApi.csproj",
       "packagesPath": "C:\\Users\\Cong\\.nuget\\packages\\",
-      "outputPath": "D:\\Code Files\\Intern Enclave\\StudentManagementApi\\obj\\",
+      "outputPath": "D:\\Code Files\\Intern Enclave\\CRUDAPI\\StudentManagementApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Cong\\AppData\\Roaming\\NuGet\\NuGet.Config",

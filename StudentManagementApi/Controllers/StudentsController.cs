@@ -26,25 +26,33 @@ namespace StudentManagementApi.Controllers
         {
             return await _context.Students.ToListAsync();
         }
-        // GET: api/Students/GetStudentDetails/5
-        [HttpGet("GetStudentDetails/{id}")]
-        public async Task<ActionResult<Student>> GetStudentDetails(int id)
+        //Get: api/Classes/5/Students
+        [HttpGet("{id}/Classes")]
+        public async Task<ActionResult<Student>> GetClassOfStudent(int id)
         {
-            var student = await _context.Students
-                .Include(s => s.Class)
-                .Where(s => s.StudentId == id)
-                .FirstOrDefaultAsync();
+            //var students = await _context.Students
+            //                        .Include(s => s.ClassEnrolments)
+            //                        .ThenInclude(cs => cs.Class)
+            //                        .Where(s => s.StudentId == id)
+            //                        .FirstOrDefaultAsync();
+            //if (students == null)
+            //{
+            //    return NotFound();
+            //}
+            var listStudentClass = await _context.ClassEnrolments
+                .Include(ce => ce.Class)
+                .Where(ce => ce.StudentId == id)
+                .ToListAsync();
 
-            if (student == null)
+
+            List<Class> listClass = new List<Class>();
+            foreach (var c in listStudentClass)
             {
-                return NotFound();
+                listClass.Add(c.Class);
             }
 
-            return student;
-
-
+            return Ok(listClass);
         }
-
 
         // GET: api/Students/5
         [HttpGet("{id}")]

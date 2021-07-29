@@ -27,22 +27,31 @@ namespace StudentManagementApi.Controllers
             return await _context.Classes.ToListAsync();
         }
 
-        //Get: api/Classes/GetClassDetails/5
-        [HttpGet("GetClassDetails/{id}")]
-        public async Task<ActionResult<Class>> GetClassDetails(int id)
+        //Get: api/Classes/5/Students
+        [HttpGet("{id}/Students")]
+        public async Task<ActionResult<Class>> GetStudentOfClass(int id)
         {
+            //var @class = await _context.Classes
+            //                        .Include(c => c.ClassEnrolments)
+            //                        .ThenInclude(cs => cs.Student)
+            //                        .Where(c => c.ClassId == id)
+            //                        .FirstOrDefaultAsync();
 
-            var @class = await _context.Classes
-                                    .Include(c => c.Students)
-                                    .Where(c => c.ClassId == id)
-                                    .FirstOrDefaultAsync();
-
-            if (@class == null)
+            //if (@class == null)
+            //{
+            //    return NotFound();
+            //}
+            var listStudentClass = await _context.ClassEnrolments
+                .Include(sc => sc.Student)
+                .Where(sc => sc.ClassId == id)
+                .ToListAsync();
+            List<Student> listStudent = new List<Student>();
+            foreach (var s in listStudentClass)
             {
-                return NotFound();
+                listStudent.Add(s.Student);
             }
 
-            return @class;
+            return Ok(listStudent);
         }
 
         // GET: api/Classes/5
@@ -101,6 +110,35 @@ namespace StudentManagementApi.Controllers
             return CreatedAtAction("GetClass", new { id = @class.ClassId }, @class);
         }
 
+        // POST: api/Classes/1/Student
+        [HttpPost("{id}/Student")]
+        public async Task<ActionResult<Class>> PostStudentToClass(int id, Student student)
+        {
+            bool check = false;
+            var students = await _context.Students.ToListAsync();
+            foreach (Student st in students)
+            {
+                if (st.StudentId == student.StudentId)
+                {
+                    check = true;
+                    break;
+                }
+            }
+            if (check == false)
+            {
+                return NotFound("Sinh Vien Chua Ton Tai");
+            }
+            else
+            {
+                ClassEnrolment classEnrolment = new ClassEnrolment();
+                classEnrolment.ClassId = id;
+                classEnrolment.StudentId = student.StudentId;
+                _context.ClassEnrolments.Add(classEnrolment);
+                await _context.SaveChangesAsync();
+            }
+            return Ok();
+        }
+
         // DELETE: api/Classes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClass(int id)
@@ -116,7 +154,41 @@ namespace StudentManagementApi.Controllers
 
             return NoContent();
         }
-
+        // DELETE: api/Classes/5/Student
+        [HttpDelete("{id}/Student")]
+        public async Task<IActionResult> DeleteStudentInClass(int id, Student student)
+        {
+            bool check = false;
+            var students = await _context.Students.ToListAsync();
+            foreach (Student st in students)
+            {
+                if (st.StudentId == student.StudentId)
+                {
+                    check = true;
+                    break;
+                }
+            }
+            if (check == false)
+            {
+                return NotFound("Sinh Vien Chua Ton Tai");
+            }
+            else
+            {
+                var classEnrolment = await _context.ClassEnrolments
+                    .Where(ce => ce.StudentId == student.StudentId && ce.ClassId == id)
+                    .FirstOrDefaultAsync();
+                if (classEnrolment == null)
+                {
+                    return NotFound("Khong Ton Tai Sinh Vien Nay Trong Lop");
+                }
+                else
+                {
+                     _context.ClassEnrolments.Remove(classEnrolment);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            return Ok();
+        }
         private bool ClassExists(int id)
         {
             return _context.Classes.Any(e => e.ClassId == id);

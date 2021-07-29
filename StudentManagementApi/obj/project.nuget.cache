@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tIzkB5fba37e6yekIchCNlHg96F4mOiFo2eFQCQtD3hPHZlXMH7tnF4oE23VqAKFm+VcWdO4/UgfoVVNQioZhw==",
+  "dgSpecHash": "ZVWF8dQ6fKBOaedsHg5nc/fAB3YsR1oWL1q+QD57dad1pfGlr5uMw1upDxVQDvHnW1+b2onnqIDBdu0rtZB3dA==",
   "success": true,
-  "projectFilePath": "D:\\Code Files\\Intern Enclave\\StudentManagementApi\\StudentManagementApi.csproj",
+  "projectFilePath": "D:\\Code Files\\Intern Enclave\\CRUDAPI\\StudentManagementApi\\StudentManagementApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cong\\.nuget\\packages\\bricelam.entityframeworkcore.pluralizer\\1.0.0\\bricelam.entityframeworkcore.pluralizer.1.0.0.nupkg.sha512",
     "C:\\Users\\Cong\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

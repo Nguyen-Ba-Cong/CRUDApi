@@ -7,12 +7,15 @@ namespace StudentManagementApi.Models
 {
     public partial class Student
     {
+        public Student()
+        {
+            ClassEnrolments = new HashSet<ClassEnrolment>();
+        }
+
         public int StudentId { get; set; }
         public string Name { get; set; }
-        public DateTime? Birthdate { get; set; }
         public string Gender { get; set; }
-        public int? ClassId { get; set; }
 
-        public virtual Class Class { get; set; }
+        public virtual ICollection<ClassEnrolment> ClassEnrolments { get; set; }
     }
 }

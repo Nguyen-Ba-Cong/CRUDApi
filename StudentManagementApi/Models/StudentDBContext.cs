@@ -18,6 +18,7 @@ namespace StudentManagementApi.Models
         }
 
         public virtual DbSet<Class> Classes { get; set; }
+        public virtual DbSet<ClassEnrolment> ClassEnrolments { get; set; }
         public virtual DbSet<Student> Students { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -43,19 +44,34 @@ namespace StudentManagementApi.Models
                     .HasColumnName("name");
             });
 
+            modelBuilder.Entity<ClassEnrolment>(entity =>
+            {
+                entity.HasKey(e => new { e.StudentId, e.ClassId });
+
+                entity.ToTable("class_enrolment");
+
+                entity.Property(e => e.StudentId).HasColumnName("student_id");
+
+                entity.Property(e => e.ClassId).HasColumnName("class_id");
+
+                entity.HasOne(d => d.Class)
+                    .WithMany(p => p.ClassEnrolments)
+                    .HasForeignKey(d => d.ClassId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CLASS");
+
+                entity.HasOne(d => d.Student)
+                    .WithMany(p => p.ClassEnrolments)
+                    .HasForeignKey(d => d.StudentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_STUDENT");
+            });
+
             modelBuilder.Entity<Student>(entity =>
             {
                 entity.ToTable("Student");
 
-                entity.Property(e => e.StudentId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("student_id");
-
-                entity.Property(e => e.Birthdate)
-                    .HasColumnType("date")
-                    .HasColumnName("birthdate");
-
-                entity.Property(e => e.ClassId).HasColumnName("class_id");
+                entity.Property(e => e.StudentId).HasColumnName("student_id");
 
                 entity.Property(e => e.Gender)
                     .HasMaxLength(50)
@@ -64,11 +80,6 @@ namespace StudentManagementApi.Models
                 entity.Property(e => e.Name)
                     .HasMaxLength(150)
                     .HasColumnName("name");
-
-                entity.HasOne(d => d.Class)
-                    .WithMany(p => p.Students)
-                    .HasForeignKey(d => d.ClassId)
-                    .HasConstraintName("FK_Student_Class");
             });
 
             OnModelCreatingPartial(modelBuilder);
