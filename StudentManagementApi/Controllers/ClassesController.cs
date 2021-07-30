@@ -31,16 +31,23 @@ namespace StudentManagementApi.Controllers
         [HttpGet("{id}/Students")]
         public async Task<ActionResult<Class>> GetStudentOfClass(int id)
         {
+            //List<Student> students = new List<Student>();
             //var @class = await _context.Classes
             //                        .Include(c => c.ClassEnrolments)
             //                        .ThenInclude(cs => cs.Student)
             //                        .Where(c => c.ClassId == id)
             //                        .FirstOrDefaultAsync();
+            //foreach(var st in @class.ClassEnrolments)
+            //{
+            //    students.Add(st.Student);
+            //}
+
 
             //if (@class == null)
             //{
             //    return NotFound();
             //}
+            //return Ok(students);
             var listStudentClass = await _context.ClassEnrolments
                 .Include(sc => sc.Student)
                 .Where(sc => sc.ClassId == id)
@@ -114,17 +121,8 @@ namespace StudentManagementApi.Controllers
         [HttpPost("{id}/Student")]
         public async Task<ActionResult<Class>> PostStudentToClass(int id, Student student)
         {
-            bool check = false;
-            var students = await _context.Students.ToListAsync();
-            foreach (Student st in students)
-            {
-                if (st.StudentId == student.StudentId)
-                {
-                    check = true;
-                    break;
-                }
-            }
-            if (check == false)
+            var stu = await _context.Students.SingleOrDefaultAsync(s => s.StudentId == student.StudentId);
+            if (stu == null)
             {
                 return NotFound("Sinh Vien Chua Ton Tai");
             }
@@ -158,17 +156,8 @@ namespace StudentManagementApi.Controllers
         [HttpDelete("{id}/Student")]
         public async Task<IActionResult> DeleteStudentInClass(int id, Student student)
         {
-            bool check = false;
-            var students = await _context.Students.ToListAsync();
-            foreach (Student st in students)
-            {
-                if (st.StudentId == student.StudentId)
-                {
-                    check = true;
-                    break;
-                }
-            }
-            if (check == false)
+            var stu = await _context.Students.SingleOrDefaultAsync(s => s.StudentId == student.StudentId);
+            if (stu == null)
             {
                 return NotFound("Sinh Vien Chua Ton Tai");
             }
@@ -183,7 +172,7 @@ namespace StudentManagementApi.Controllers
                 }
                 else
                 {
-                     _context.ClassEnrolments.Remove(classEnrolment);
+                    _context.ClassEnrolments.Remove(classEnrolment);
                     await _context.SaveChangesAsync();
                 }
             }
