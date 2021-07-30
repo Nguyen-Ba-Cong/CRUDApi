@@ -128,13 +128,22 @@ namespace StudentManagementApi.Controllers
             }
             else
             {
-                ClassEnrolment classEnrolment = new ClassEnrolment();
-                classEnrolment.ClassId = id;
-                classEnrolment.StudentId = student.StudentId;
-                _context.ClassEnrolments.Add(classEnrolment);
-                await _context.SaveChangesAsync();
+                var checkStudentInCLass = await _context.ClassEnrolments.SingleOrDefaultAsync(sc => sc.ClassId == id && sc.StudentId == student.StudentId);
+                if (checkStudentInCLass == null)
+                {
+                    ClassEnrolment classEnrolment = new ClassEnrolment();
+                    classEnrolment.ClassId = id;
+                    classEnrolment.StudentId = student.StudentId;
+                    _context.ClassEnrolments.Add(classEnrolment);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    return Ok("Sinh Vien Da Co Trong Lop");
+                }
+
             }
-            return Ok();
+            return Ok("Them Moi Thanh Cong");
         }
 
         // DELETE: api/Classes/5
