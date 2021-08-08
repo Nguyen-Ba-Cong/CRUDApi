@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Code Files\\Intern Enclave\\QuanLySinhVien\\QuanLySinhVien.csproj": {}
+    "D:\\Code Files\\Intern Enclave\\CRUDAPI\\QlsvApiDbFirst\\QuanLySinhVien.csproj": {}
   },
   "projects": {
-    "D:\\Code Files\\Intern Enclave\\QuanLySinhVien\\QuanLySinhVien.csproj": {
+    "D:\\Code Files\\Intern Enclave\\CRUDAPI\\QlsvApiDbFirst\\QuanLySinhVien.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code Files\\Intern Enclave\\QuanLySinhVien\\QuanLySinhVien.csproj",
+        "projectUniqueName": "D:\\Code Files\\Intern Enclave\\CRUDAPI\\QlsvApiDbFirst\\QuanLySinhVien.csproj",
         "projectName": "QuanLySinhVien",
-        "projectPath": "D:\\Code Files\\Intern Enclave\\QuanLySinhVien\\QuanLySinhVien.csproj",
+        "projectPath": "D:\\Code Files\\Intern Enclave\\CRUDAPI\\QlsvApiDbFirst\\QuanLySinhVien.csproj",
         "packagesPath": "C:\\Users\\Cong\\.nuget\\packages\\",
-        "outputPath": "D:\\Code Files\\Intern Enclave\\QuanLySinhVien\\obj\\",
+        "outputPath": "D:\\Code Files\\Intern Enclave\\CRUDAPI\\QlsvApiDbFirst\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Cong\\AppData\\Roaming\\NuGet\\NuGet.Config",

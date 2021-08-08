@@ -7336,11 +7336,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Code Files\\Intern Enclave\\QlsvApi\\QlsvApi.csproj",
+      "projectUniqueName": "D:\\Code Files\\Intern Enclave\\CRUDAPI\\QlsvApiCodeFirst\\QlsvApi.csproj",
       "projectName": "QlsvApi",
-      "projectPath": "D:\\Code Files\\Intern Enclave\\QlsvApi\\QlsvApi.csproj",
+      "projectPath": "D:\\Code Files\\Intern Enclave\\CRUDAPI\\QlsvApiCodeFirst\\QlsvApi.csproj",
       "packagesPath": "C:\\Users\\Cong\\.nuget\\packages\\",
-      "outputPath": "D:\\Code Files\\Intern Enclave\\QlsvApi\\obj\\",
+      "outputPath": "D:\\Code Files\\Intern Enclave\\CRUDAPI\\QlsvApiCodeFirst\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Cong\\AppData\\Roaming\\NuGet\\NuGet.Config",

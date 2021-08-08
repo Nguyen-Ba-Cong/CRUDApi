@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VQLi3yQ+f1+anxgdoNpEDorfBuNfDyZFYgXtBuq2oMqaXQ80jWT8tc7IWzna7sg9QJAz0mAqLRu2lqFlqzLl4A==",
+  "dgSpecHash": "1ZMuojo0sMeRCOKg45DN8ruR/WehZWpMgPxQdR3X51YulnXV/iP9xPYc8zbj/YKvhhvllrLz4dWIqFU8Jz+vnw==",
   "success": true,
-  "projectFilePath": "D:\\Code Files\\Intern Enclave\\QlsvApi\\QlsvApi.csproj",
+  "projectFilePath": "D:\\Code Files\\Intern Enclave\\CRUDAPI\\QlsvApiCodeFirst\\QlsvApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cong\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Cong\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

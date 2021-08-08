@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StudentManagementApi.Models;
+using StudentManagementApi.Respositories;
 
 namespace StudentManagementApi
 {
@@ -26,6 +27,9 @@ namespace StudentManagementApi
 
             services.AddControllers();
             services.AddDbContext<StudentDBContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            services.AddScoped<IClassRepository, ClassRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            //services.AddScoped<IStudentRepository, StudentProxy>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

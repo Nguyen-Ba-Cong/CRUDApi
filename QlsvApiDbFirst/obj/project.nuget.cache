@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "O7xQqGVLIahwc0Y+VYUp4OodRteZvKJutIO8ekcqujtMFURVDAdaAfC15InteQD1twfU3Us3aZh675r3y8aZRQ==",
+  "dgSpecHash": "b6Y7otcGPFHPvcE8mvdGCMVhDsnIp63ACB8bV7/ZG6L3cqMMqUSDoSPKTOnl6TuaCGXKWyMaYTM72HV8fYvIGQ==",
   "success": true,
-  "projectFilePath": "D:\\Code Files\\Intern Enclave\\QuanLySinhVien\\QuanLySinhVien.csproj",
+  "projectFilePath": "D:\\Code Files\\Intern Enclave\\CRUDAPI\\QlsvApiDbFirst\\QuanLySinhVien.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cong\\.nuget\\packages\\bricelam.entityframeworkcore.pluralizer\\1.0.0\\bricelam.entityframeworkcore.pluralizer.1.0.0.nupkg.sha512",
     "C:\\Users\\Cong\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

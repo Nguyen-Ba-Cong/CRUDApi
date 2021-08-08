@@ -278,3 +278,4 @@ D:\Code Files\Intern Enclave\CRUDAPI\StudentManagementApi\obj\Debug\net5.0\Stude
 D:\Code Files\Intern Enclave\CRUDAPI\StudentManagementApi\obj\Debug\net5.0\ref\StudentManagementApi.dll
 D:\Code Files\Intern Enclave\CRUDAPI\StudentManagementApi\obj\Debug\net5.0\StudentManagementApi.pdb
 D:\Code Files\Intern Enclave\CRUDAPI\StudentManagementApi\obj\Debug\net5.0\StudentManagementApi.genruntimeconfig.cache
+D:\Code Files\Intern Enclave\CRUDAPI\StudentManagementApi\bin\Debug\net5.0\AutoMapper.dll
