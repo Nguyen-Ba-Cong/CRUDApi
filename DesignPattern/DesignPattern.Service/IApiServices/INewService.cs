@@ -10,9 +10,9 @@ namespace DesignPattern.Service.IApiServices
     public interface INewService
     {
         public NewModel GetNew(int id);
-        public List<NewModel> GetNews();
-        public NewModel AddNew(NewModel newModel);
-        public NewModel UpdateNew(int id, NewModel newModel);
-        public NewModel DeleteNew(int id);
+        public List<NewModel> GetNews(int offset, int limit);
+        public NewModel AddNew(string userId, NewModel newModel);
+        public NewModel UpdateNew(string userId, NewModel newModel);
+        public NewModel DeleteNew(string userId, NewModel newModel);
     }
 }

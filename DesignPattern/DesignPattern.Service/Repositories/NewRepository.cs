@@ -10,97 +10,75 @@ using System.Threading.Tasks;
 
 namespace DesignPattern.Service.Repositories
 {
-    public class NewRepository : INewRepository
+    public class NewRepository : BaseRepository<New>, INewRepository
     {
         private readonly DesignPatternDBContext _context;
-        public NewRepository(DesignPatternDBContext context)
+        public NewRepository(DesignPatternDBContext context) : base(context)
         {
             _context = context;
         }
-        public New AddNew(New neww)
+
+        public New AddNew(string userId, New neww)
         {
             try
             {
-                _context.News.Add(neww);
+                var idToFind = Convert.ToInt32(userId);
+                var user = _context.Users.FirstOrDefault(u => u.Id == idToFind);
+                var newToAdd = new New();
+                newToAdd.Title = neww.Title;
+                newToAdd.Content = neww.Content;
+                newToAdd.Image = neww.Image;
+                newToAdd.Description = neww.Description;
+                newToAdd.Users = user;
+                _context.News.Add(newToAdd);
                 _context.SaveChanges();
-                return neww;
+                return newToAdd;
+
             }
             catch (Exception e)
             {
                 Console.WriteLine(JsonConvert.SerializeObject(e));
+                return null;
             }
-            return null;
         }
 
-        public New DeleteNew(int id)
+        public void DeleteNew(string userId, New neww)
         {
             try
             {
-                var newDel = GetNew(id);
-                _context.Remove(newDel);
-                _context.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(e));
-            }
-            return null;
-        }
-
-        public New GetNew(int id)
-        {
-            try
-            {
-                var neww = _context.News.Include(n => n.Categories).ThenInclude(c=>c.News).FirstOrDefault(n => n.Id == id);
-                return neww;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(e));
-            }
-            return null;
-        }
-
-        public List<New> GetNews()
-        {
-            try
-            {
-                var news = _context.News.ToList();
-                return news;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(JsonConvert.SerializeObject(e));
-            }
-            return null;
-        }
-
-        public New UpdateNew(int id, New neww)
-        {
-            try
-            {
-                if (neww.Id != id)
+                var newDel = _context.News.Include(n => n.Users).FirstOrDefault(n => n.Id == neww.Id);
+                var idInt = Convert.ToInt32(userId);
+                if (newDel.Users.Id == idInt)
                 {
-                    Console.WriteLine("Id Not Match");
-                    return null;
+                    _context.News.Remove(newDel);
+                    _context.SaveChanges();
                 }
-                else
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(e));
+            }
+        }
+
+        public void UpdateNew(string userId, New neww)
+        {
+            try
+            {
+                var newUpdate = _context.News.Include(n => n.Users).FirstOrDefault(n => n.Id == neww.Id);
+                var idInt = Convert.ToInt32(userId);
+                if (newUpdate.Users.Id == idInt)
                 {
-                    var newUpdate = GetNew(id);
                     newUpdate.Title = neww.Title;
-                    newUpdate.Image = neww.Image;
                     newUpdate.Content = neww.Content;
-                    newUpdate.Categories = neww.Categories;
+                    newUpdate.Image = neww.Image;
                     newUpdate.Description = neww.Description;
                     _context.SaveChanges();
-                    return newUpdate;
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(JsonConvert.SerializeObject(e));
             }
-            return null;
         }
     }
 }

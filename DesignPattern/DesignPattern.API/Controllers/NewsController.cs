@@ -23,9 +23,9 @@ namespace DesignPattern.API.Controllers
 
         // GET: api/News
         [HttpGet]
-        public List<NewModel> GetNews()
+        public List<NewModel> GetNews(int offset = 0, int limit = 10)
         {
-            return _newSerVice.GetNews();
+            return _newSerVice.GetNews(offset, limit);
         }
 
         // get: api/news/5
@@ -38,9 +38,10 @@ namespace DesignPattern.API.Controllers
         // PUT: api/News/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public NewModel PutNew(int id, NewModel newModel)
+        public NewModel PutNew(NewModel newModel)
         {
-            return _newSerVice.UpdateNew(id, newModel);
+            var userId = HttpContext.Session.GetString("UserId");
+            return _newSerVice.UpdateNew(userId, newModel);
         }
 
         // POST: api/News
@@ -48,14 +49,17 @@ namespace DesignPattern.API.Controllers
         [HttpPost]
         public NewModel PostNew(NewModel newModel)
         {
-            return _newSerVice.AddNew(newModel);
+            var userId = HttpContext.Session.GetString("UserId");
+            var newResult = _newSerVice.AddNew(userId, newModel);
+            return newResult;
         }
 
         // DELETE: api/News/5
         [HttpDelete("{id}")]
-        public NewModel DeleteNew(int id)
+        public NewModel DeleteNew(NewModel newModel)
         {
-            return _newSerVice.DeleteNew(id);
+            string userId = HttpContext.Session.GetString("UserId");
+            return _newSerVice.DeleteNew(userId, newModel);
         }
 
         //private bool NewExists(int id)

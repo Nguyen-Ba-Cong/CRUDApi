@@ -79,6 +79,12 @@ namespace DesignPattern.API
                 config.AddPolicy(Policies.Policies.Guest, Policies.Policies.GuestPolicy());
                 config.AddPolicy(Policies.Policies.Admin_Guest, policy => policy.RequireRole(Policies.Policies.Admin, Policies.Policies.Guest));
             });
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(1);
+            });
+            services.AddMvc();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -95,6 +101,7 @@ namespace DesignPattern.API
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

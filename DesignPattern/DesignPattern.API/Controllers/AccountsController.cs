@@ -1,6 +1,7 @@
 ﻿using DesignPattern.Service.IApiServices;
 using DesignPattern.Service.Models.JWT;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace DesignPattern.API.Controllers
             }
             else
             {
+                HttpContext.Session.SetString("UserId", response.Id.ToString());
                 return StatusCode(200, response);
             }
         }

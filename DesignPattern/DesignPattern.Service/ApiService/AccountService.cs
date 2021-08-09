@@ -6,6 +6,7 @@ using DesignPattern.Service.IRepositories;
 using DesignPattern.Service.JWT;
 using DesignPattern.Service.Models;
 using DesignPattern.Service.Models.JWT;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;

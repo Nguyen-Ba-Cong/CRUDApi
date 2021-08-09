@@ -3,6 +3,7 @@ using DesignPattern.Database.Entity;
 using DesignPattern.Service.IApiServices;
 using DesignPattern.Service.IRepositories;
 using DesignPattern.Service.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,10 @@ namespace DesignPattern.Service.ApiService
             _newRepository = newRepository;
             _mapper = mapper;
         }
-        public NewModel AddNew(NewModel newModel)
+        public NewModel AddNew(string userId, NewModel newModel)
         {
             var newToAdd = _mapper.Map<New>(newModel);
-            var neww = _newRepository.AddNew(newToAdd);
+            var neww = _newRepository.AddNew(userId, newToAdd);
             if (neww != null)
             {
                 return newModel;
@@ -31,20 +32,24 @@ namespace DesignPattern.Service.ApiService
             return null;
         }
 
-        public NewModel DeleteNew(int id)
+        public NewModel DeleteNew(string userId, NewModel newModel)
         {
-            var newDel = _newRepository.DeleteNew(id);
-            if (newDel != null)
+            try
             {
-                var newResult = _mapper.Map<NewModel>(newDel);
-                return newResult;
+                var newToDel = _mapper.Map<New>(newModel);
+                _newRepository.DeleteNew(userId, newToDel);
+                return newModel;
             }
-            return null;
+            catch (Exception e)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(e));
+                return null;
+            }
         }
 
         public NewModel GetNew(int id)
         {
-            var newGet = _newRepository.GetNew(id);
+            var newGet = _newRepository.FindByCondition(e => e.Id == id).FirstOrDefault();
             if (newGet != null)
             {
                 var newResult = _mapper.Map<NewModel>(newGet);
@@ -53,9 +58,9 @@ namespace DesignPattern.Service.ApiService
             return null;
         }
 
-        public List<NewModel> GetNews()
+        public List<NewModel> GetNews(int offset, int limit)
         {
-            var news = _newRepository.GetNews();
+            var news = _newRepository.All(offset, limit);
             if (news != null)
             {
                 var newsResult = _mapper.Map<List<NewModel>>(news);
@@ -64,16 +69,19 @@ namespace DesignPattern.Service.ApiService
             return null;
         }
 
-        public NewModel UpdateNew(int id, NewModel newModel)
+        public NewModel UpdateNew(string userId, NewModel newModel)
         {
-            var newToUpdate = _mapper.Map<New>(newModel);
-            var newUpdate = _newRepository.UpdateNew(id, newToUpdate);
-            if (newUpdate != null)
+            try
             {
-                var newResult = _mapper.Map<NewModel>(newUpdate);
-                return newResult;
+                var newToUpdate = _mapper.Map<New>(newModel);
+                _newRepository.UpdateNew(userId, newToUpdate);
+                return newModel;
             }
-            return null;
+            catch (Exception e)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(e));
+                return null;
+            }
         }
     }
 }

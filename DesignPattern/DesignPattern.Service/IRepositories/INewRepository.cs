@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace DesignPattern.Service.IRepositories
 {
-    public interface INewRepository
+    public interface INewRepository : IBaseRepository<New>
     {
-        public New GetNew(int id);
-        public List<New> GetNews();
-        public New AddNew(New neww);
-        public New UpdateNew(int id, New neww);
-        public New DeleteNew(int id);
+        public New AddNew(string userId, New neww);
+        public void DeleteNew(string userId, New neww);
+        public void UpdateNew(string userId, New neww);
     }
 }

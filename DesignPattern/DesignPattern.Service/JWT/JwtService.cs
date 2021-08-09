@@ -38,8 +38,8 @@ namespace DesignPattern.Service.JWT
                 expires: DateTime.Now.AddDays(7),
                 signingCredentials: credentials
             );
-            var acessTokem = new JwtSecurityTokenHandler().WriteToken(token);
-            return acessTokem;
+            var acessToken = new JwtSecurityTokenHandler().WriteToken(token);
+            return acessToken;
         }
 
         public string RandomTokenString()

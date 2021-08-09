@@ -2396,6 +2396,7 @@
           "AutoMapper": "10.1.1",
           "DesignPattern.Database": "1.0.0",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "5.0.8",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.EntityFrameworkCore": "5.0.8",
           "Microsoft.Extensions.Configuration": "5.0.0"
         },
